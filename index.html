@@ -2,33 +2,33 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amistad Infinita HD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Amistad HD Celular</title>
     <style>
-        body { margin: 0; background: #000; overflow: hidden; font-family: 'Arial Black', sans-serif; touch-action: none; }
-        canvas { display: block; }
+        /* Reset total para evitar márgenes raros en móvil */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; overflow: hidden; font-family: 'Arial Black', sans-serif; touch-action: none; height: 100vh; width: 100vw; display: flex; justify-content: center; align-items: center; }
+        canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         
         #btn-inicio {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            padding: 20px 40px; font-size: 1.2rem; background: transparent; color: #fff;
-            border: 2px solid #fff; border-radius: 5px; cursor: pointer; z-index: 100;
-            letter-spacing: 3px; transition: 0.5s;
+            position: relative; z-index: 100; padding: 18px 35px; font-size: 1rem;
+            background: transparent; color: #fff; border: 2px solid #fff; border-radius: 50px;
+            cursor: pointer; letter-spacing: 2px; text-transform: uppercase;
         }
-        #btn-inicio:hover { background: #fff; color: #000; box-shadow: 0 0 50px #fff; }
 
         #instrucciones {
-            position: fixed; bottom: 8%; width: 100%; text-align: center;
-            color: rgba(255,255,255,0.4); font-size: 0.8rem; letter-spacing: 2px;
-            pointer-events: none; text-transform: uppercase; display: none;
+            position: fixed; bottom: 10%; width: 100%; text-align: center;
+            color: rgba(255,255,255,0.4); font-size: 0.75rem; letter-spacing: 1px;
+            z-index: 10; pointer-events: none; display: none;
         }
     </style>
 </head>
 <body>
 
-    <button id="btn-inicio" onclick="comenzar()">ABRIR REGALO 🎁</button>
-    <div id="instrucciones">Toca para descubrir otra razón</div>
+    <button id="btn-inicio" onclick="comenzar()">Abrir Amistad ✨</button>
+    <div id="instrucciones">TOCA LA PANTALLA PARA OTRA FRASE</div>
 
-    <audio id="musica" loop>
+    <audio id="musica" loop preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
@@ -40,37 +40,37 @@
         const audio = document.getElementById('musica');
         
         const frases = [
-            "Eres la mejor amiga del mundo", "Gracias por tantas risas", "Nuestra amistad es un tesoro",
-            "Eres súper leal", "Gracias por escucharme siempre", "Haces todo más divertido",
-            "Qué suerte haberte conocido", "Eres una crack", "Nuestras locuras son lo mejor",
-            "Eres mi mejor confidente", "Admiro tu forma de ser", "Por más años de amistad",
-            "Siempre me haces el día", "Me encanta nuestra vibra", "Eres pura buena onda",
-            "Gracias por los consejos", "Eres de mi equipo siempre", "Nadie me entiende como tú",
-            "Eres una persona valiosa", "Amo nuestras anécdotas", "Eres mi apoyo constante",
-            "Qué buen equipo hacemos", "Eres auténtica", "Gracias por estar siempre",
-            "Nuestra amistad no tiene precio", "Eres súper talentosa", "Me encanta tu energía",
-            "Eres la persona más divertida", "Gracias por ser tú", "Eres mi hermana elegida",
-            "Siempre tienes la palabra justa", "Por mil aventuras más", "Eres de las que suma",
-            "Nuestra amistad es de hierro", "Qué buenos recuerdos", "Eres clave en mi vida",
-            "Gracias por tu sinceridad", "Eres mi persona favorita", "Haces todo más fácil",
-            "Eres una gran amiga", "Aprecio nuestra lealtad", "Eres pura luz",
-            "Gracias por no juzgarme", "Eres la mejor para los planes", "Nuestra conexión es única",
-            "Eres un ejemplo", "Amo tu sentido del humor", "Amistades como la tuya son eternas",
-            "Gracias por ser tan real", "Eres mi apoyo total", "Nuestras pláticas son lo mejor",
-            "Eres súper inteligente", "Qué bien la pasamos", "Eres mi mejor aliada",
-            "Gracias por aguantar mis locuras", "Eres brillante", "Amo tu honestidad",
-            "Eres de lo mejor que tengo", "Nuestra amistad es indestructible", "Eres creativa",
-            "Gracias por motivarme", "Eres de palabra", "Qué risas nos damos",
-            "Siempre puedo contar contigo", "Vales oro", "Gracias por tu tiempo",
-            "Eres la más ocurrente", "Amistad incondicional", "Eres de mente abierta",
-            "Me encanta cómo escuchas", "Eres increíble", "Gracias por ser mi guía",
-            "Eres mi mejor socia", "Nuestras historias son leyenda", "Eres de buen corazón",
-            "Qué fortuna tenerte cerca", "Eres mi gran apoyo", "Gracias por ser noble",
-            "Eres valiente", "Amo nuestra confianza", "Eres de mis mejores recuerdos",
-            "Amistad a prueba de todo", "Eres súper capaz", "Gracias por la paciencia",
-            "La mejor para charlar", "Qué buena vibra", "Eres alguien especial",
-            "Siempre estás ahí", "Eres mi mejor partner", "Gracias por ser mi amiga",
-            "Amigas por siempre", "Eres fuera de serie", "¡Eres la mejor!"
+            "Eres la mejor amiga", "Gracias por tantas risas", "Nuestra amistad es un tesoro",
+            "Eres súper leal", "Gracias por escucharme", "Haces todo divertido",
+            "Suerte de conocerte", "Eres una crack", "Nuestras locuras mandan",
+            "Mejor confidente", "Admiro cómo eres", "Por más años juntos",
+            "Me haces el día", "Me encanta nuestra vibra", "Pura buena onda",
+            "Gracias por los consejos", "De mi equipo siempre", "Nadie me entiende como tú",
+            "Persona valiosa", "Amo nuestras anécdotas", "Apoyo constante",
+            "Buen equipo hacemos", "Eres auténtica", "Gracias por estar",
+            "Amistad sin precio", "Súper talentosa", "Amo tu energía",
+            "Persona más divertida", "Gracias por ser tú", "Hermana elegida",
+            "Palabra justa siempre", "Por mil aventuras", "Siempre sumas",
+            "Amistad de hierro", "Buenos recuerdos", "Clave en mi vida",
+            "Gracias por tu sinceridad", "Persona favorita", "Todo es más fácil",
+            "Gran amiga", "Aprecio tu lealtad", "Eres pura luz",
+            "Cero juicios contigo", "Mejor para los planes", "Conexión única",
+            "Eres un ejemplo", "Amo tu humor", "Amistad eterna",
+            "Eres súper real", "Apoyo total", "Pláticas infinitas",
+            "Súper inteligente", "Qué bien la pasamos", "Mi mejor aliada",
+            "Aguantas mis locuras", "Eres brillante", "Amo tu honestidad",
+            "De lo mejor que tengo", "Indestructible", "Muy creativa",
+            "Me motivas siempre", "Eres de palabra", "Qué risas nos damos",
+            "Cuento contigo", "Vales oro puro", "Gracias por tu tiempo",
+            "La más ocurrente", "Incondicional", "Mente abierta",
+            "Sabes escuchar", "Eres increíble", "Eres mi guía",
+            "Mi mejor socia", "Historias de leyenda", "Buen corazón",
+            "Fortuna tenerte cerca", "Gran apoyo moral", "Eres muy noble",
+            "Eres valiente", "Amo nuestra confianza", "Mejores recuerdos",
+            "A prueba de todo", "Súper capaz", "Mucha paciencia",
+            "La mejor para charlar", "Buena vibra siempre", "Alguien especial",
+            "Siempre estás ahí", "Mejor partner", "Gracias por ser amiga",
+            "Amigas por siempre", "Fuera de serie", "¡Eres la mejor!"
         ];
 
         let particles = [];
@@ -81,7 +81,7 @@
         function comenzar() {
             document.getElementById('btn-inicio').style.display = 'none';
             document.getElementById('instrucciones').style.display = 'block';
-            audio.play().catch(() => {});
+            audio.play().catch(() => console.log("Audio bloqueado"));
             stage = 0;
             init();
             animate();
@@ -91,8 +91,6 @@
             canvas.width = window.innerWidth * dpr;
             canvas.height = window.innerHeight * dpr;
             ctx.scale(dpr, dpr);
-            canvas.style.width = window.innerWidth + 'px';
-            canvas.style.height = window.innerHeight + 'px';
         }
 
         class Particle {
@@ -101,10 +99,9 @@
                 this.x = Math.random() * window.innerWidth;
                 this.y = Math.random() * -window.innerHeight;
                 this.vx = (Math.random() - 0.5) * 2;
-                this.vy = Math.random() * 3 + 2;
+                this.vy = Math.random() * 2 + 2;
                 this.active = true;
-                this.size = Math.random() * 1.5 + 0.8;
-                this.color = "#ffffff";
+                this.size = Math.random() * 1.2 + 0.8;
             }
 
             update() {
@@ -116,12 +113,12 @@
                     this.y += (this.ty - this.y) * 0.1;
                 } else {
                     this.x += this.vx; this.y += this.vy;
-                    this.vx *= 0.96; this.vy *= 0.96;
+                    this.vx *= 0.95; this.vy *= 0.95;
                 }
             }
 
             draw() {
-                ctx.fillStyle = this.color;
+                ctx.fillStyle = "#ffffff";
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -133,23 +130,24 @@
             const tCtx = tCanvas.getContext('2d');
             tCanvas.width = window.innerWidth;
             tCanvas.height = window.innerHeight;
-            const isMob = window.innerWidth < 600;
-            const fSize = isMob ? 32 : 55;
-            tCtx.font = `900 ${fSize}px sans-serif`;
+            
+            const fontSize = window.innerWidth < 600 ? 30 : 50;
+            tCtx.font = `900 ${fontSize}px sans-serif`;
             tCtx.textAlign = 'center';
             tCtx.textBaseline = 'middle';
             
             const palabras = texto.split(" ");
             let lineas = [], lineaActual = "";
             palabras.forEach(p => {
-                if((lineaActual + p).length > (isMob ? 16 : 30)) {
+                if((lineaActual + p).length > (window.innerWidth < 600 ? 15 : 30)) {
                     lineas.push(lineaActual); lineaActual = p + " ";
                 } else { lineaActual += p + " "; }
             });
             lineas.push(lineaActual);
 
             lineas.forEach((l, i) => {
-                tCtx.fillText(l, tCanvas.width/2, tCanvas.height/2 + (i * fSize * 1.2) - (lineas.length * fSize / 2));
+                const yPos = (window.innerHeight / 2) + (i * fontSize * 1.2) - ((lineas.length - 1) * fontSize * 0.6);
+                tCtx.fillText(l, window.innerWidth / 2, yPos);
             });
 
             const data = tCtx.getImageData(0, 0, tCanvas.width, tCanvas.height).data;
@@ -176,20 +174,20 @@
             
             particles.forEach(p => {
                 p.active = false;
-                p.vx = (Math.random() - 0.5) * 40;
-                p.vy = (Math.random() - 0.5) * 40;
+                p.vx = (Math.random() - 0.5) * 30;
+                p.vy = (Math.random() - 0.5) * 30;
             });
 
-            indexFrase++;
-            const pts = obtenerPuntos(frases[indexFrase % frases.length]);
+            indexFrase = (indexFrase + 1) % frases.length;
+            const pts = obtenerPuntos(frases[indexFrase]);
             
             setTimeout(() => {
                 particles = pts.map(p => new Particle(p.x, p.y));
-            }, 150);
+            }, 100);
         }
 
         function animate() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
             ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
             particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animate);
